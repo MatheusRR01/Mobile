@@ -1,73 +1,28 @@
-import React from 'react';
-import {
-  SafeAreaView,
-  View,
-  FlatList,
-  StyleSheet,
-  Text,
-  Image,
-  StatusBar,
-} from 'react-native';
-import { List } from 'react-native-paper';
+// In App.js in a new project
 
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    titulo: 'Primeiro Item',
-    descricao: 'Descrição do Primeiro Item',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    titulo: 'Segundo Item',
-    descricao: 'Descrição do Segundo Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    titulo: 'Terceiro Item',
-    descricao: 'Descrição do Terceiro Item',
-  },
-];
+import * as React from 'react';
+import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Item = ({elemento: item}) => {
-   return(
-  <List.Item
-    title={item.titulo}
-    description={item.descricao}
-    // left={props => <List.Icon {...props} icon="folder" />}
-    left={props => <Image {...props} style={styles.tinyLogo} source={{uri:'https://www.alura.com.br/artigos/assets/tipos-de-testes-principais-por-que-utiliza-los/tipos-de-testes-principais-por-que-utiliza-los.jpg'}}/>} 
-  />
-)};
-
-const App = () => {
+function HomeScreen() {
   return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={DATA}
-        renderItem={({item}) => <Item elemento={item} />}
-        keyExtractor={item => item.id}
-      />
-    </SafeAreaView>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Home Screen</Text>
+    </View>
   );
-};
+}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
-  },
-  item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
-  title: {
-    fontSize: 32,
-  },
-  tinyLogo: {
-    width: 50,
-    height: 50,
-  }
-});
+const Stack = createNativeStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
 
 export default App;
